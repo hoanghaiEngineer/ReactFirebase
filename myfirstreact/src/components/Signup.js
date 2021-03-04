@@ -1,10 +1,18 @@
 import React, {useRef} from 'react'
 import {Form, Button, Card} from 'react-bootstrap'
+import {useAuth} from '../contexts/AuthContext'
 
 export default function Signup(){
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
+    const { signup } = useAuth()
+
+    function handleSubmit(e){
+        e.preventDefault()
+
+        signup(emailRef.current.value, passwordRef.current.value)
+    }
 
     return (
         <>
@@ -38,6 +46,8 @@ export default function Signup(){
             </Card>
             <div className="w-100 text-center mt-2">
                 Already have an account? Log In
+
+                {/* https://www.youtube.com/watch?v=PKwu15ldZ7k&ab_channel=WebDevSimplified */}
             </div>
         </>
     )
